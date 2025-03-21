@@ -43,17 +43,12 @@ const jsonParse = (input: string): Result<any, SyntaxError> => {
 it("Should parse JSON", () => {
     const result = jsonParse('{"key": "value"}')
 
-    // Verify this is a success Result
     expect(result.isOk()).toBe(true)
 
-    // Type narrowing: TypeScript now knows result is a success Result
-    // Without this check, we couldn't safely access result.value
     if (!result.isOk()) return
 
-    // Check the actual value inside the Result
     expect(result.value).toEqual({ key: "value" })
 
-    // Type assertion: The success type is 'any' as defined in our function signature
     type Test = Expect<Equal<typeof result.value, any>>
 })
 
@@ -61,34 +56,11 @@ it("Should parse JSON", () => {
 it("Should return an error if the JSON is invalid", () => {
     const result = jsonParse("invalid json")
 
-    // Verify this is an error Result
     expect(result.isErr()).toBe(true)
 
-    // Type narrowing: TypeScript now knows result is an error Result
-    // Without this check, we couldn't safely access result.error
     if (!result.isErr()) return
 
-    // Check the actual error inside the Result
     expect(result.error).toBeInstanceOf(SyntaxError)
 
-    // Type assertion: The error type is specifically SyntaxError
-    // This is guaranteed by our explicit return type
     type Test = Expect<Equal<typeof result.error, SyntaxError>>
 })
-
-// NEXT LESSON CONCEPTS:
-// 1. Result methods: Beyond isOk() and isErr(), Results have powerful methods like:
-//    - map(): Transform success values
-//    - mapErr(): Transform error values
-//    - chain(): Compose Results safely (also called andThen())
-//    - match(): Handle both success and error cases at once
-//
-// 2. Type safety: neverthrow ensures complete type safety throughout your code:
-//    - No more forgetting to handle errors
-//    - TypeScript enforces proper Result handling
-//    - No more uncaught exceptions in production
-//
-// 3. Railway-oriented programming: Think of your code as parallel tracks:
-//    - Success track: Values flow through transformations
-//    - Error track: Errors flow separately without disrupting the main flow
-//    - Results let you elegantly switch between tracks

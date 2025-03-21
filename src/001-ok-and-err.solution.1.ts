@@ -40,16 +40,12 @@ const jsonParse = (input: string) => {
 it("Should parse JSON", () => {
     const result = jsonParse('{"key": "value"}')
 
-    // Check if the Result is a success
     expect(result.isOk()).toBe(true)
 
-    // Type narrowing: After checking isOk(), TypeScript knows this is a success Result
     if (!result.isOk()) return
 
-    // Now we can safely access the .value property
     expect(result.value).toEqual({ key: "value" })
 
-    // Type assertion test - confirms the type of result.value
     type Test = Expect<Equal<typeof result.value, any>>
 })
 
@@ -57,15 +53,11 @@ it("Should parse JSON", () => {
 it("Should return an error if the JSON is invalid", () => {
     const result = jsonParse("invalid json")
 
-    // Check if the Result is an error
     expect(result.isErr()).toBe(true)
 
-    // Type narrowing: After checking isErr(), TypeScript knows this is an error Result
     if (!result.isErr()) return
 
-    // Now we can safely access the .error property
     expect(result.error).toBeInstanceOf(SyntaxError)
 
-    // Type assertion test - confirms the type of result.error
     type Test = Expect<Equal<typeof result.error, SyntaxError>>
 })

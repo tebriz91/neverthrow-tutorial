@@ -1,4 +1,24 @@
-<a href="https://totaltypescript.com/"><img src="https://res.cloudinary.com/total-typescript/image/upload/v1714636660/pro-essentials-github-cover_gw2bah.png" alt="Total TypeScript by Matt Pocock" /></a>
+# Neverthrow Tutorial
+
+This tutorial teaches you how to use the [neverthrow](https://github.com/supermacro/neverthrow) library to handle errors in a functional programming style. Neverthrow provides a `Result` type that represents either success (`Ok`) or failure (`Err`), allowing you to handle errors without throwing exceptions.
+
+## What You'll Learn
+
+1. **Basic Result Usage**: Creating `Ok` and `Err` values with the `ok()` and `err()` functions.
+2. **Expected vs Unexpected Errors**: Distinguishing between errors you should handle and those that should crash your app.
+3. **Handling Results**: Using `isOk()` and `isErr()` to safely handle both success and error cases.
+4. **Transforming Results**: Using `map()` and `mapErr()` to transform success and error values.
+5. **Pattern Matching**: Using `match()` to handle both cases in a single function call.
+6. **Chaining Operations**: Using `andThen()` to compose multiple Result-returning functions.
+7. **Type Safety**: Understanding why explicit Result type annotations are important.
+
+## Railway Oriented Programming
+
+Neverthrow implements the "Railway Oriented Programming" pattern, where:
+- Success values flow down the "happy path" track
+- Error values flow down a parallel "error" track
+- Functions and operations are applied only to values on the appropriate track
+- This creates clean, declarative error handling without try/catch blocks
 
 ## Quickstart
 

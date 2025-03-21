@@ -26,7 +26,11 @@
     "s": "npm run solution",
     "ci": "(cd scripts/tests && npx vitest run)",
     "update-snapshots": "(cd scripts/tests && npx vitest run -u)",
-    "prepare": "tt-cli prepare-stackblitz"
+    "prepare": "tt-cli prepare-stackblitz",
+    "e-004.5": "tt-cli run 004.5",
+    "s-004.5": "tt-cli run 004.5 --solution",
+    "e-006": "tt-cli run 006",
+    "s-006": "tt-cli run 006 --solution"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.29.12",
